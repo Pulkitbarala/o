@@ -1,0 +1,40 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <cctype>
+class WordCounter {
+private:
+    std::unordered_map<std::string, int> wordCounts;
+    std::vector<std::string> wordOrder;
+public:
+    WordCounter() {}
+    void countWords(const std::string& sentence) {
+        std::istringstream iss(sentence);
+        std::string word;
+        while (iss >> word) {
+            wordCounts[word]++;
+            if (std::find(wordOrder.begin(), wordOrder.end(), word) == wordOrder.end()) {
+                wordOrder.push_back(word);
+            }
+        }
+    }
+    void displayWordCounts() {
+        std::cout << "Total words: " << wordOrder.size() << std::endl;
+        std::cout << "Word Counts:" << std::endl;
+        for (const auto& word : wordOrder) {
+            std::cout << word << ": " << wordCounts[word] << std::endl;
+        }
+    }
+};
+int main() {
+    std::string sentence;
+    std::getline(std::cin, sentence);
+    WordCounter wordCounter;
+    wordCounter.countWords(sentence);
+    wordCounter.displayWordCounts();
+
+    return 0;
+}
