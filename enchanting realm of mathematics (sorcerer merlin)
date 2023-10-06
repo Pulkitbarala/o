@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+class Fraction {
+private:
+    int numerator;
+    int denominator;
+public:
+    Fraction(int num, int denom) : numerator(num), denominator(denom) {}
+    void multiply(const Fraction& other) {
+        numerator *= other.numerator;
+        denominator *= other.denominator;
+        simplify();
+    }
+    void simplify() {
+        int common = gcd(numerator, denominator);
+        numerator /= common;
+        denominator /= common;
+    }
+    void display() {
+        cout << numerator << "/" << denominator << endl;
+    }
+};
+int main() {
+    int num1, denom1, num2, denom2;
+    cin >> num1 >> denom1 >> num2 >> denom2;
+    Fraction fraction1(num1, denom1);
+    Fraction fraction2(num2, denom2);
+    fraction1.multiply(fraction2);
+    cout << "The result of multiplication is: ";
+    fraction1.display();
+    return 0;
+}
