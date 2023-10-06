@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class Time {
+    private:
+        int hours, minutes, seconds;
+    
+    public:
+        Time(int seconds) {
+            this->hours = seconds / 3600;
+            this->minutes = (seconds % 3600) / 60;
+            this->seconds = seconds % 60;
+        }
+    
+        void display() {
+            cout << this->hours << ":" << this->minutes << ":" << this->seconds;
+        }
+};
+
+int main() {
+    int seconds;
+    cin >> seconds;
+    
+    Time timeObj(seconds);
+    timeObj.display();
+    
+    return 0;
+}
