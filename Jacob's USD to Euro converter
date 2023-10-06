@@ -1,0 +1,25 @@
+#include <iostream>
+#include <iomanip>
+class CurrencyConverter {
+private:
+    double conversionRate;
+    double usDollars;
+public:
+    CurrencyConverter(double rate, double dollars) {
+        conversionRate = rate;
+        usDollars = dollars;
+    }
+    double convertToEuros() {
+        return usDollars * conversionRate;
+    }
+};
+
+int main() {
+    double conversionRate, usDollars;
+    std::cin >> conversionRate >> usDollars;
+    CurrencyConverter converter(conversionRate, usDollars);
+    double euros = converter.convertToEuros();
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "Converted amount in Euros (EUR): " << euros << " EUR" << std::endl;
+    return 0;
+}
