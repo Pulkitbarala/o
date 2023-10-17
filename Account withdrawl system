@@ -1,0 +1,31 @@
+#include <iostream>
+
+class AccountBalance {
+private:
+    int balance;
+
+public:
+    AccountBalance(int initialBalance) {
+        balance = initialBalance;
+    }
+
+    int getBalance() {
+        return balance;
+    }
+
+    void withdraw(int amount) {
+        balance -= amount;
+    }
+};
+
+int main() {
+    int initialBalance, withdrawAmount;
+    std::cin >> initialBalance >> withdrawAmount;
+    
+    AccountBalance account(initialBalance);
+    account.withdraw(withdrawAmount);
+    
+    std::cout << account.getBalance() << std::endl;
+
+    return 0;
+}
