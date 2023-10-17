@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+
+class RomanNumeral {
+private:
+    std::string romanNumeral;
+
+public:
+    RomanNumeral(std::string roman) {
+        romanNumeral = roman;
+    }
+
+    int toDecimal() {
+        int decimalNumber = 0;
+        int previousValue = 0;
+
+        for (int i = romanNumeral.length() - 1; i >= 0; i--) {
+            int currentValue = romanToDecimal(romanNumeral[i]);
+
+            if (currentValue < previousValue)
+                decimalNumber -= currentValue;
+            else
+                decimalNumber += currentValue;
+
+            previousValue = currentValue;
+        }
+
+        return decimalNumber;
+    }
+
+private:
+    int romanToDecimal(char romanDigit) {
+        switch (romanDigit) {
+            case 'I':
+                return 1;
+                break;
+            case 'V':
+                return 5;
+                break;
+            case 'X':
+                return 10;
+                break;
+            case 'L':
+                return 50;
+                break;
+            case 'C':
+                return 100;
+                break;
+            case 'D':
+                return 500;
+                break;
+            case 'M':
+                return 1000;
+                break;
+            default:
+                return 0;
+        }
+    }
+};
+
+int main() {
+    std::string romanNumeral;
+    std::getline(std::cin, romanNumeral);
+    RomanNumeral numeral(romanNumeral);
+    int decimalNumber = numeral.toDecimal();
+    std::cout << "Equivalent decimal number: " << decimalNumber << std::endl;
+    return 0;
+}
