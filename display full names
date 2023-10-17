@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+
+class FullName {
+public:
+    FullName(std::string first, std::string last) {
+        firstName = first;
+        lastName = last;
+    }
+
+    std::string toString() {
+        return firstName + " " + lastName;
+    }
+
+private:
+    std::string firstName;
+    std::string lastName;
+};
+
+int main() {
+    std::string firstName, lastName;
+    getline(std::cin, firstName);
+    getline(std::cin, lastName);
+    FullName fullName(firstName, lastName);
+    std::cout << fullName.toString() << std::endl;
+    return 0;
+}
